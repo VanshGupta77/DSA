@@ -1,7 +1,7 @@
 class Solution {
     public String smallestPalindrome(String s) {
         int n = s.length();
-        int[] counts = new int[26];
+        int[] counts = new int[26]; //frequency of characters
 
         for (int i = 0; i < n / 2; i++) {
             counts[s.charAt(i) - 'a']++;

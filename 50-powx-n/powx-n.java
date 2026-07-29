@@ -8,7 +8,7 @@ class Solution {
             return 1;
         }
          if (n < 0) {
-            return 1.0 / myPow(x, Math.abs(n)); //Negative Power
+            return 1.0 / myPow(x, -n); //Negative Power
         }
         // int halfPowersq = optmPower(a, n/2) * optmPower(a, n/2); (More Time Complexity)
         double halfPower = myPow(x, n/2);

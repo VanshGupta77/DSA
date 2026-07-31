@@ -6,7 +6,7 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
             cs = cs + nums[i];
             ms = Math.max(cs, ms);  //to check for cases like -1 when all elements are negative
-            if (cs < 0) {
+            if (cs < 0) { // kadanes algorithm as it doesnt consider negative values
                 cs = 0;
             }
         }

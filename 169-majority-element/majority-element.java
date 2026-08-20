@@ -1,24 +1,22 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        Arrays.sort(nums);
-        int freq = 1; //Frequency Count
-        int ans = nums[0];
+        // Arrays.sort(nums);
+        // return nums[nums.length/2];
 
-        for(int i=1; i<nums.length; i++){
-            if(nums[i] == nums[i-1]){ // Means same adjacent Elements
+        // Moore's Voting Algorithm
+        int freq = 0;
+        int ans = 0;
+        for(int i=0; i<nums.length; i++){
+            if(freq == 0){
+                ans = nums[i];
+            }
+            if( ans == nums[i]){
                 freq++;
-                 if (freq > nums.length / 2) {  // check INSIDE loop
-                    return nums[i];
-                }
             }
-            else{ //Means adjacent elements not equal
-                freq =1; //frequency reset
-                ans = nums[i]; // New element for counting
+            else{
+                freq--;
             }
         }
-        if(freq > nums.length/2){ //means a element is more than half the elements of array
-            return ans;
-        }
-           return -1;
+        return ans;
     }
 }

@@ -1,15 +1,45 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int first = -1; //means we haven't found first yet
-        int last = -1; //means we haven't found last yet
-        for(int i =0; i<nums.length; i++){
-            if(nums[i] == target){ 
-                if(first == -1){ //means we have already found Target , now we just checking if we have found it before or not
-                    first = i; //updates the location of first means we found it here
-                }
-                    last =i ; //keeps updating last position
+         int i = 0;
+        int j = nums.length-1;
+
+        int first = -1;
+        int second = -1;
+
+        while(i <= j){ //first
+            int mid = i + (j-i)/2;
+            if(nums[mid] == target){
+                first = mid;
+                j = mid-1;
+            }
+            else if(nums[mid] < target){
+                i = mid+1;
+            }
+            else{
+                j = mid -1;
             }
         }
-        return new int[]{first , last};
+
+        i=0;
+        j=nums.length-1;
+
+        while(i<=j){ //second
+             int mid = i + (j-i)/2;
+            if(nums[mid] == target){
+                second = mid;
+                i = mid+1;
+            }
+            else if(nums[mid] < target){
+                i = mid+1;
+            }
+            else{
+                j = mid -1;
+            }
+        }
+        int elements[] = {-1 , -1};
+        elements[0] = first;
+        elements[1] = second;
+
+        return elements;
     }
 }

@@ -1,26 +1,28 @@
 class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) {
-        int m = matrix.length;
-        int n = matrix[0].length;
+    public boolean searchMatrix(int[][] nums, int target) {
+        int row = nums.length;
+        int col = nums[0].length;
 
-        int low = 0;
-        int high = m * n - 1;
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
+        int left = 0;
+        int right = row*col-1;
 
-            // in 2d matrix of m*n always do
-            // no. of rows = mid/n
-            // no. of cols= mid%n
+        while(left <= right){
+            int mid = left + (right-left)/2;
 
-            if (matrix[mid / n][mid % n] == target)
+            int rows = mid/col;
+            int cols = mid%col;
+
+            if(nums[rows][cols] == target){
                 return true;
-            else if (matrix[mid / n][mid % n] > target)
-                high = mid - 1;
-            else
-                low = mid + 1;
+            }
+            else if(nums[rows][cols] < target){
+                left = mid+1;
+            }
+            else{
+                right = mid-1;
+            }
         }
-
         return false;
     }
 }
